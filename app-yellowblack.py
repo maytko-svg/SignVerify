@@ -348,7 +348,7 @@ if not os.path.exists(MODEL_PATH):
             quiet=False
         )
 
-OPTIMAL_THRESHOLD = 0.62
+OPTIMAL_THRESHOLD = 0.86
 DEVICE = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
 # Load model
