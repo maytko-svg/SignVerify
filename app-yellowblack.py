@@ -411,7 +411,7 @@ class GradCAM:
         self.model.eval()
         output = self.model(input_tensor)
         self.model.zero_grad()
-        torch.abs(output[0, 0].backward())
+        torch.abs(output[0, 0]).backward()
         weights = self.gradients.mean(dim=(2, 3), keepdim=True)
         cam = (weights * self.activations).sum(dim=1, keepdim=True)
         cam = torch.relu(cam).squeeze().cpu().numpy()
