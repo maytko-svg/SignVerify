@@ -15,15 +15,15 @@ import io
 import os
 import gdown
 
-# ── Page config ───────────────────────────────────────────────────────────────
+# Page config 
 st.set_page_config(
-    page_title="SignVerify",
-    page_icon="✍️",
-    layout="wide",
-    initial_sidebar_state="collapsed"
+    page_title = "SignVerify",
+    page_icon = "✍️",
+    layout = "wide",
+    initial_sidebar_state = "collapsed"
 )
 
-# ── Session state ──────────────────────────────────────────────────────────────
+# Session state 
 if 'page' not in st.session_state:
     st.session_state.page = 'upload'
 if 'results' not in st.session_state:
@@ -38,16 +38,16 @@ st.markdown("""
     @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=DM+Serif+Display&display=swap');
 
     :root {
-        --bg:          #111111;
-        --card:        #1e1e1e;
-        --card-hover:  #252525;
-        --gold:        #c9a96e;
-        --gold-light:  #d4b483;
-        --gold-glow:   rgba(201, 169, 110, 0.25);
-        --text:        #ffffff;
-        --text-muted:  #8a8a8a;
-        --border:      rgba(201, 169, 110, 0.30);
-        --danger:      #cf6679;
+        --bg: #111111;
+        --card: #1e1e1e;
+        --card-hover: #252525;
+        --gold: #c9a96e;
+        --gold-light: #d4b483;
+        --gold-glow: rgba(201, 169, 110, 0.25);
+        --text: #ffffff;
+        --text-muted: #8a8a8a;
+        --border: rgba(201, 169, 110, 0.30);
+        --danger: #cf6679;
         --danger-glow: rgba(207, 102, 121, 0.25);
     }
 
@@ -58,7 +58,7 @@ st.markdown("""
         color: var(--text) !important;
     }
 
-    /* ── Primary action button ─────────────────────────────────────────────── */
+    /* Primary action button */
     [data-testid="stButton"] { text-align: center !important; }
     [data-testid="stButton"] button {
         background: linear-gradient(135deg, #c9a96e 0%, #b8924a 100%) !important;
@@ -84,7 +84,7 @@ st.markdown("""
         box-shadow: none !important;
     }
 
-    /* ── Metric cards ──────────────────────────────────────────────────────── */
+    /* Metric cards */
     .metric-card {
         background: var(--card);
         border: 1px solid var(--border);
@@ -118,7 +118,7 @@ st.markdown("""
         border-radius: 4px;
     }
 
-    /* ── Verdict ───────────────────────────────────────────────────────────── */
+    /* Verdict */
     .verdict-genuine {
         font-size: 3.4rem;
         font-weight: 700;
@@ -138,7 +138,7 @@ st.markdown("""
         letter-spacing: -0.01em;
     }
 
-    /* ── Header ────────────────────────────────────────────────────────────── */
+    /* Header */
     .main-title {
         font-size: 5.5rem;
         font-weight: 400;
@@ -160,7 +160,7 @@ st.markdown("""
         font-weight: 400;
     }
 
-    /* ── Section tags ──────────────────────────────────────────────────────── */
+    /* Section tags */
     .section-tag {
         font-size: 0.68rem;
         letter-spacing: 0.18em;
@@ -177,14 +177,14 @@ st.markdown("""
         font-weight: 400;
     }
 
-    /* ── Divider ───────────────────────────────────────────────────────────── */
+    /* Divider */
     .divider {
         border: none;
         border-top: 1px solid var(--border);
         margin: 2.5rem 0;
     }
 
-    /* ── Info box ──────────────────────────────────────────────────────────── */
+    /* Info box */
     .info-box {
         background: var(--card);
         border-left: 3px solid var(--gold);
@@ -198,10 +198,10 @@ st.markdown("""
     }
     .info-box strong { color: var(--gold); }
 
-    /* ── Global overrides ──────────────────────────────────────────────────── */
+    /* Global overrides */
     #MainMenu {visibility: hidden;}
-    footer     {visibility: hidden;}
-    header     {visibility: hidden;}
+    footer {visibility: hidden;}
+    header {visibility: hidden;}
 
     .block-container {
         padding-top: 2.5rem !important;
@@ -215,7 +215,7 @@ st.markdown("""
         font-size: 0.75rem !important;
     }
 
-    /* ── Upload zone ───────────────────────────────────────────────────────── */
+    /* Upload zone */
     [data-testid="stFileUploaderDropzone"] {
         background-color: transparent !important;
         border: none !important;
@@ -269,7 +269,7 @@ st.markdown("""
         opacity: 1 !important;
     }
 
-    /* ── Delete button ─────────────────────────────────────────────────────── */
+    /* Remove the uploaded image button */
     [data-testid="stFileChipDeleteBtn"] {
         margin-right: 8px !important;
     }
@@ -291,7 +291,7 @@ st.markdown("""
         display: none !important;
     }
 
-    /* ── Signature preview box ─────────────────────────────────────────────── */
+    /* Signature preview box */
     .sig-preview-box {
         background: var(--card);
         border: 1px solid var(--gold);
@@ -314,7 +314,7 @@ st.markdown("""
         box-sizing: border-box;
     }
 
-    /* ── Empty upload zone ─────────────────────────────────────────────────── */
+    /* Empty upload zone */
     .sig-empty-box {
         background: var(--card);
         border: 1px dashed var(--border);
@@ -336,7 +336,7 @@ st.markdown("""
 </style>
 """, unsafe_allow_html=True)
 
-# ── Model download from Google Drive ──────────────────────────────────────────
+# Model download from Google Drive 
 MODEL_PATH = "resnet50_signature_final.pth"
 DRIVE_FILE_ID = "1ySVNnAGiulOjLCWL9qjayfb2-CT7LoXx"
 
@@ -351,7 +351,7 @@ if not os.path.exists(MODEL_PATH):
 OPTIMAL_THRESHOLD = 0.62
 DEVICE = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
-# ── Load Model──────────────────────────────────────────
+# Load model
 @st.cache_resource
 def load_model():
     model = models.resnet50(weights=ResNet50_Weights.IMAGENET1K_V1)
@@ -368,7 +368,7 @@ def load_model():
     model.eval()
     return model
 
-# ── Transforms ────────────────────────────────────────────────────────────────
+# Transforms
 transform = transforms.Compose([
     transforms.Grayscale(num_output_channels=3),
     transforms.Resize((224, 224)),
@@ -378,7 +378,7 @@ transform = transforms.Compose([
 ])
 
 
-# ── Feature extractor ─────────────────────────────────────────────────────────
+# Feature extractor
 class FeatureExtractor(nn.Module):
     def __init__(self, model):
         super().__init__()
@@ -392,11 +392,11 @@ class FeatureExtractor(nn.Module):
         return self.features(x).flatten(1)
 
 
-# ── Grad-CAM ──────────────────────────────────────────────────────────────────
+# Grad-CAM
 class GradCAM:
     def __init__(self, model, target_layer):
-        self.model       = model
-        self.gradients   = None
+        self.model = model
+        self.gradients = None
         self.activations = None
         target_layer.register_forward_hook(self._save_activation)
         target_layer.register_full_backward_hook(self._save_gradient)
@@ -411,18 +411,18 @@ class GradCAM:
         self.model.eval()
         output = self.model(input_tensor)
         self.model.zero_grad()
-        output[0, 0].backward()
+        torch.abs(output[0, 0].backward())
         weights = self.gradients.mean(dim=(2, 3), keepdim=True)
-        cam     = (weights * self.activations).sum(dim=1, keepdim=True)
-        cam     = torch.relu(cam).squeeze().cpu().numpy()
-        cam    -= cam.min()
+        cam = (weights * self.activations).sum(dim=1, keepdim=True)
+        cam = torch.relu(cam).squeeze().cpu().numpy()
+        cam -= cam.min()
         if cam.max() > 0:
             cam /= cam.max()
         return cam
 
 
 def make_gradcam_overlay(pil_image, cam):
-    img_np  = np.array(pil_image.resize((224, 224)).convert('RGB'))
+    img_np = np.array(pil_image.resize((224, 224)).convert('RGB'))
     heatmap = cv2.resize(cam, (224, 224))
     heatmap = np.uint8(255 * heatmap)
     heatmap = cv2.applyColorMap(heatmap, cv2.COLORMAP_JET)
@@ -431,42 +431,42 @@ def make_gradcam_overlay(pil_image, cam):
     return overlay
 
 
-# ── Inference ─────────────────────────────────────────────────────────────────
+# Inference
 def run_inference(ref_image, query_image, model):
     extractor = FeatureExtractor(model).to(DEVICE)
     extractor.eval()
-    gradcam   = GradCAM(model, model.layer4[-1])
+    gradcam = GradCAM(model, model.layer4[-1])
 
-    ref_tensor   = transform(ref_image).unsqueeze(0).to(DEVICE)
+    ref_tensor = transform(ref_image).unsqueeze(0).to(DEVICE)
     query_tensor = transform(query_image).unsqueeze(0).to(DEVICE)
     query_tensor.requires_grad_(True)
 
     with torch.no_grad():
-        ref_emb   = extractor(ref_tensor)
+        ref_emb = extractor(ref_tensor)
         query_emb = extractor(query_tensor)
     similarity = cosine_similarity(ref_emb, query_emb).item()
 
     with torch.set_grad_enabled(True):
-        output          = model(query_tensor)
+        output = model(query_tensor)
         classifier_prob = torch.sigmoid(output).item()
 
-    cam     = gradcam.generate(query_tensor)
+    cam = gradcam.generate(query_tensor)
     overlay = make_gradcam_overlay(query_image, cam)
 
     combined_score = 0.5 * similarity + 0.5 * classifier_prob
-    verdict        = 'Genuine' if combined_score >= OPTIMAL_THRESHOLD else 'Forged'
-    confidence     = combined_score if verdict == 'Genuine' else 1 - combined_score
+    verdict = 'Genuine' if combined_score >= OPTIMAL_THRESHOLD else 'Forged'
+    confidence= combined_score if verdict == 'Genuine' else 1 - combined_score
 
     return {
-        'verdict':         verdict,
-        'confidence':      confidence,
-        'similarity':      similarity,
+        'verdict': verdict,
+        'confidence': confidence,
+        'similarity': similarity,
         'classifier_prob': classifier_prob,
-        'combined_score':  combined_score,
+        'combined_score': combined_score,
         'gradcam_overlay': overlay
     }
 
-# ── Helpers ───────────────────────────────────────────────────────────────────
+# Helpers
 def pil_to_b64(img: Image.Image) -> str:
     buf = io.BytesIO()
     img.save(buf, format="PNG")
@@ -494,7 +494,7 @@ def sig_preview(img, key_suffix: str):
         """, unsafe_allow_html=True)
 
 
-# ── PAGE 1: UPLOAD ─────────────────────────────────────────────────────────────
+# Page 1: Upload
 def page_upload():
     st.markdown("""
     <p class="main-title" style="font-size: 2rem;">SignVerify</p>
@@ -510,13 +510,13 @@ def page_upload():
 
     col1, col_gap, col2 = st.columns([5, 1, 5])
 
-    ref_file   = None
+    ref_file = None
     query_file = None
-    ref_image  = None
+    ref_image = None
     query_image = None
 
     with col1:
-        st.markdown('<span class="section-tag">01 — Reference Signature</span>', unsafe_allow_html=True)
+        st.markdown('<span class="section-tag">01 - Reference Signature</span>', unsafe_allow_html=True)
         st.markdown('<p class="upload-label">Upload a known genuine signature</p>', unsafe_allow_html=True)
         ref_file = st.file_uploader("Reference", type=["png", "jpg", "jpeg"],
                                     label_visibility="collapsed", key="ref")
@@ -525,7 +525,7 @@ def page_upload():
         sig_preview(ref_image, "ref")
 
     with col2:
-        st.markdown('<span class="section-tag">02 — Query Signature</span>', unsafe_allow_html=True)
+        st.markdown('<span class="section-tag">02 - Query Signature</span>', unsafe_allow_html=True)
         st.markdown('<p class="upload-label">Upload the signature to verify</p>', unsafe_allow_html=True)
         query_file = st.file_uploader("Query", type=["png", "jpg", "jpeg"],
                                       label_visibility="collapsed", key="query")
@@ -547,7 +547,7 @@ def page_upload():
 
     if evaluate and both_files_ready and ref_image is not None and query_image is not None:
         with st.spinner("Analysing signatures..."):
-            st.session_state.ref_image_stored  = ref_image
+            st.session_state.ref_image_stored = ref_image
             st.session_state.query_image_stored = query_image
             st.session_state.results = run_inference(ref_image, query_image, model)
         st.session_state.page = 'results'
@@ -563,7 +563,7 @@ def page_upload():
         """, unsafe_allow_html=True)
 
 
-# ── PAGE 2: RESULTS ────────────────────────────────────────────────────────────
+# Page 2: Results
 def page_results():
     st.markdown("""
     <p class="main-title" style="font-size: 2rem;">SignVerify</p>
@@ -571,8 +571,8 @@ def page_results():
     <hr class="divider">
     """, unsafe_allow_html=True)
 
-    results     = st.session_state.results
-    ref_image   = st.session_state.ref_image_stored
+    results = st.session_state.results
+    ref_image = st.session_state.ref_image_stored
     query_image = st.session_state.query_image_stored
 
     st.markdown('<span class="section-tag">Results</span>', unsafe_allow_html=True)
@@ -581,7 +581,7 @@ def page_results():
 
     with res_col1:
         verdict_class = "verdict-genuine" if results['verdict'] == 'Genuine' else "verdict-forged"
-        verdict_icon  = "✓" if results['verdict'] == 'Genuine' else "✗"
+        verdict_icon = "✓" if results['verdict'] == 'Genuine' else "✗"
         st.markdown(
             f'<p class="{verdict_class}">{verdict_icon} {results["verdict"]}</p>',
             unsafe_allow_html=True
@@ -589,17 +589,17 @@ def page_results():
         st.markdown("<br>", unsafe_allow_html=True)
 
         conf_pct = results['confidence'] * 100
-        sim_pct  = results['similarity'] * 100
-        cls_pct  = results['classifier_prob'] * 100
+        sim_pct = results['similarity'] * 100
+        cls_pct = results['classifier_prob'] * 100
         comb_pct = results['combined_score'] * 100
 
         bar_color = "#c9a96e" if results['verdict'] == 'Genuine' else "#cf6679"
 
         for label, value, pct in [
-            ("Confidence",       f"{conf_pct:.1f}%", conf_pct),
+            ("Confidence", f"{conf_pct:.1f}%", conf_pct),
             ("Similarity Score", f"{sim_pct:.1f}%",  sim_pct),
             ("Classifier Score", f"{cls_pct:.1f}%",  cls_pct),
-            ("Combined Score",   f"{comb_pct:.1f}%", comb_pct),
+            ("Combined Score", f"{comb_pct:.1f}%", comb_pct),
         ]:
             st.markdown(f"""
             <div class="metric-card">
@@ -645,7 +645,7 @@ def page_results():
             The heatmap highlights regions the model focused on when
             making its decision. Red/yellow areas had the highest
             influence on the output. Compare the reference and query
-            signatures — structural similarities drive a higher
+            signatures - structural similarities drive a higher
             similarity score.
         </div>
         """, unsafe_allow_html=True)
@@ -661,16 +661,16 @@ def page_results():
             st.rerun()
 
 
-# ── Load model (once, at startup) ─────────────────────────────────────────────
+# Load model (once, at startup) 
 try:
     model = load_model()
     model_loaded = True
 except Exception as e:
-    st.error(f"⚠️ Could not load model: {e}\n\nSet MODEL_PATH to ResNet.")
+    st.error(f"Could not load model: {e}\n\nSet MODEL_PATH to ResNet.")
     model_loaded = False
 
 
-# ── MAIN APP LOGIC ─────────────────────────────────────────────────────────────
+# MAIN APP LOGIC 
 if st.session_state.page == 'upload':
     page_upload()
 elif st.session_state.page == 'results':
