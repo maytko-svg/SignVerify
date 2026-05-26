@@ -337,8 +337,8 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # Model download from Google Drive 
-MODEL_PATH = "resnet50_signature_final.pth"
-DRIVE_FILE_ID = "1ySVNnAGiulOjLCWL9qjayfb2-CT7LoXx"
+MODEL_PATH = "resnet50_signature_v3_5.pth"
+DRIVE_FILE_ID = "1zbYtioN1q9lRZu86yoBF8NWG2DSc_u4g" 
 
 if not os.path.exists(MODEL_PATH):
     with st.spinner("Downloading model weights... (first run only)"):
