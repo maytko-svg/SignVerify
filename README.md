@@ -10,7 +10,10 @@ A web app for detecting forged handwritten signatures using ResNet50 deep learni
 - Real-time forgery detection with confidence scores
 - Grad-CAM attention heatmaps
 
-## Project Files
+## Model Selection
+Tested ResNet50, Vision Transformer (ViT), and VGG16 architectures. **ResNet50 selected** for best performance on signature data.
+
+## Files
 - `app-yellowblack.py` - Streamlit web application
 - `resnet50_signature.ipynb` - Model training & evaluation
 - `requirements.txt` - Dependencies
@@ -27,6 +30,3 @@ streamlit run app-yellowblack.py
   - [CEDAR Signature Dataset](https://www.kaggle.com/datasets/shreelakshmigp/cedardataset)
   - [Real-Fake Signature Datasets](https://www.kaggle.com/datasets/emrahaydemr/realfake-signature-datasets)
 - **Model Storage:** Google Drive (auto-downloaded by Streamlit app)
-
-## References
-[CEDAR] Cha, S. H., Yoon, H., & Tappert, C. C. (2005). Enhancing Binary Feature...
