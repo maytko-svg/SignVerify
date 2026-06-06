@@ -10,9 +10,12 @@ A web app for detecting forged handwritten signatures using ResNet50 deep learni
 - Real-time forgery detection with confidence scores
 - Grad-CAM attention heatmaps
 
-## Model Selection
-Tested ResNet50, Vision Transformer (ViT), and VGG16 architectures. **ResNet50 selected** for best performance on signature data.
-
+## Model Development
+Team implemented and evaluated 3 CNN architectures:
+- VGG16 (implemented by [May Thet Ko])
+- Vision Transformer (ViT)
+- ResNet50 (transfer learning) - **Selected for best performance**
+  
 ## Files
 - `app-yellowblack.py` - Streamlit web application
 - `resnet50_signature.ipynb` - Model training & evaluation
