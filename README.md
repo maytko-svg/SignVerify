@@ -12,7 +12,7 @@ A web app for detecting forged handwritten signatures using ResNet50 deep learni
 
 ## Model Development
 Team implemented and evaluated 3 CNN architectures:
-- VGG16 (implemented by [May Thet Ko])
+- VGG16 
 - Vision Transformer (ViT)
 - ResNet50 (transfer learning) - **Selected for best performance**
   
