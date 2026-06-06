@@ -24,7 +24,7 @@ streamlit run app-yellowblack.py
 ## Model & Dataset
 - **Architecture:** ResNet50 (transfer learning)
 - **Training Data:** Combined CEDAR + Real-Fake Signature Datasets
-  - [CEDAR Signature Dataset] (https://www.kaggle.com/datasets/shreelakshmigp/cedardataset)
+  - [CEDAR Signature Dataset](https://www.kaggle.com/datasets/shreelakshmigp/cedardataset)
   - [Real-Fake Signature Datasets](https://www.kaggle.com/datasets/emrahaydemr/realfake-signature-datasets)
 - **Model Storage:** Google Drive (auto-downloaded by Streamlit app)
 
